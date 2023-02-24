@@ -13,7 +13,7 @@ function App() {
         <SideBar />
         <NavBar/>
       <Routes>
-        <Route path="Main" element={<Main/>}/>
+        <Route path="/" element={<Main/>}/>
       </Routes>
         <FooterBar />
       </BrowserRouter>

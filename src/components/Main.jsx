@@ -1,4 +1,28 @@
+import {useEffect} from  "react"
+import {React} from "react"
+import { useDispatch,useSelector } from "react-redux"
+
+
 const Main = () => {
+
+    const Track = useSelector(state=> state.music.track)
+    const dispatch = useDispatch() //constante l'invio dell'azione 
+    const fetchTrack = async () =>{ //inizo fetch
+        try {
+            const res = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=linkin%20park")
+            if(res.ok){
+                const dataMusic = await res.json() //creazione di una costante in cui andiamo ad inviare il file json
+                console.log(dataMusic)
+                dispatch({type:"ADD_TRACK_MAIN", payload:dataMusic.data})
+
+            }
+        } catch (error) {
+            console.log("errore")
+        }
+    }
+    useEffect  (()=>{
+        fetchTrack()
+    },[])
     return(
         <>
         <div className="row">
